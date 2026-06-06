@@ -1,9 +1,9 @@
 "use client";
 import { motion } from "framer-motion";
+import resumeData from "../data/resume.json";
 
 export default function About() {
-  const skills = ["Amazon Web Services (AWS)", "DevOps", "Enterprise Data Warehouses (EDW)", "Python", "Scikit-learn", "dbt", "R", "SQL", "Big Query", "Tableau", "Power BI"];
-  const certs = ["University Pathways Certificate - Quant", "Portfolio Construction and Analysis with Python", "dbt Fundamentals", "Intermediate R", "AWS Certified Cloud Practitioner"];
+  const { skills, certs } = resumeData;
 
   return (
     <section id="about" className="py-20 px-6 max-w-7xl mx-auto relative z-10">

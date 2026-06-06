@@ -17,6 +17,7 @@ export default function Hero() {
           src="/profile.jpg"
           alt="Darren D. Tan"
           fill
+          sizes="(max-width: 768px) 128px, 160px"
           className="object-cover"
           priority
         />

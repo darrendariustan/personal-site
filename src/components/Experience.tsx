@@ -1,51 +1,10 @@
 "use client";
 import { motion } from "framer-motion";
 
+import resumeData from "../data/resume.json";
+
 export default function Experience() {
-  const experiences = [
-    {
-      company: "PUB, Singapore's National Water Agency",
-      role: "GenAI Systems Engineer",
-      date: "March 2026 - Present",
-      location: "Singapore",
-      description: "Working on GenAI systems and solutions."
-    },
-    {
-      company: "Banco Sabadell",
-      role: "AI Engineering Capstone",
-      date: "February 2025 - June 2025",
-      location: "Spain",
-      description: "Co-built in-house HR Analytics prototype predicting 2-year employee attrition risk for 18k+ workforce using Scikit-learn with AWS services. Partnered with HR teams to translate analytics into insights."
-    },
-    {
-      company: "Singapore Oceanarium",
-      role: "Retail Merchandise Analyst",
-      date: "February 2023 - March 2024",
-      location: "Singapore",
-      description: "Spearheaded retail system and merchandise development initiatives for the launch in July 2025."
-    },
-    {
-      company: "Singapore Airlines",
-      role: "Loyalty Marketing Executive",
-      date: "July 2021 - December 2022",
-      location: "Singapore",
-      description: "Coordinated Krisflyer loyalty program onto Scoot with various digital/business units."
-    },
-    {
-      company: "L'Oréal",
-      role: "Online Brand Management (Garnier)",
-      date: "January 2021 - July 2021",
-      location: "Singapore",
-      description: "Market research, data analysis via Tableau and Power BI. Co-proposed 360 campaign concepts for mega festivals."
-    },
-    {
-      company: "SEPHORA",
-      role: "Ecommerce Intern",
-      date: "January 2020 - July 2020",
-      location: "Singapore",
-      description: "Omnichannel customer activation, hyper-personalized in-app campaigns monthly with Braze, Ematics, Salesforce Marketing Cloud."
-    }
-  ];
+  const { experiences } = resumeData;
 
   return (
     <section id="experience" className="py-20 px-6 max-w-5xl mx-auto relative z-10">
@@ -63,7 +22,7 @@ export default function Experience() {
       <div className="space-y-12 relative before:absolute before:inset-0 before:ml-5 before:-translate-x-px md:before:mx-auto md:before:translate-x-0 before:h-full before:w-0.5 before:bg-gradient-to-b before:from-transparent before:via-slate-700 before:to-transparent">
         {experiences.map((exp, index) => (
           <motion.div 
-            key={index}
+            key={exp.id}
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-100px" }}

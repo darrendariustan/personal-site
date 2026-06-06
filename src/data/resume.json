@@ -1,0 +1,94 @@
+{
+  "skills": [
+    "Amazon Web Services (AWS)",
+    "DevOps",
+    "Enterprise Data Warehouses (EDW)",
+    "Python",
+    "Scikit-learn",
+    "dbt",
+    "R",
+    "SQL",
+    "Big Query",
+    "Tableau",
+    "Power BI"
+  ],
+  "certs": [
+    "University Pathways Certificate - Quant",
+    "Portfolio Construction and Analysis with Python",
+    "dbt Fundamentals",
+    "Intermediate R",
+    "AWS Certified Cloud Practitioner"
+  ],
+  "experiences": [
+    {
+      "id": "exp_1",
+      "company": "PUB, Singapore's National Water Agency",
+      "role": "GenAI Systems Engineer",
+      "date": "March 2026 - Present",
+      "location": "Singapore",
+      "description": "Working on GenAI systems and solutions."
+    },
+    {
+      "id": "exp_2",
+      "company": "Banco Sabadell",
+      "role": "AI Engineering Capstone",
+      "date": "February 2025 - June 2025",
+      "location": "Spain",
+      "description": "Co-built in-house HR Analytics prototype predicting 2-year employee attrition risk for 18k+ workforce using Scikit-learn with AWS services. Partnered with HR teams to translate analytics into insights."
+    },
+    {
+      "id": "exp_3",
+      "company": "Singapore Oceanarium",
+      "role": "Retail Merchandise Analyst",
+      "date": "February 2023 - March 2024",
+      "location": "Singapore",
+      "description": "Spearheaded retail system and merchandise development initiatives for the launch in July 2025."
+    },
+    {
+      "id": "exp_4",
+      "company": "Singapore Airlines",
+      "role": "Loyalty Marketing Executive",
+      "date": "July 2021 - December 2022",
+      "location": "Singapore",
+      "description": "Coordinated Krisflyer loyalty program onto Scoot with various digital/business units."
+    },
+    {
+      "id": "exp_5",
+      "company": "L'Oréal",
+      "role": "Online Brand Management (Garnier)",
+      "date": "January 2021 - July 2021",
+      "location": "Singapore",
+      "description": "Market research, data analysis via Tableau and Power BI. Co-proposed 360 campaign concepts for mega festivals."
+    },
+    {
+      "id": "exp_6",
+      "company": "SEPHORA",
+      "role": "Ecommerce Intern",
+      "date": "January 2020 - July 2020",
+      "location": "Singapore",
+      "description": "Omnichannel customer activation, hyper-personalized in-app campaigns monthly with Braze, Ematics, Salesforce Marketing Cloud."
+    }
+  ],
+  "projects": [
+    {
+      "id": "proj_1",
+      "title": "HR Analytics Attrition Prototype",
+      "type": "AI Engineering Capstone (Banco Sabadell)",
+      "description": "Co-built an in-house HR Analytics prototype predicting 2-year employee attrition risk for a workforce of over 18,000 employees. Partnered with HR teams to translate complex analytics into business-actionable insights.",
+      "tags": ["Scikit-learn", "AWS", "Python", "Data Science"],
+      "iconName": "Database",
+      "codeLink": null,
+      "detailsLink": null
+    },
+    {
+      "id": "proj_2",
+      "title": "How Expert Consultation Affects Creativity",
+      "type": "Publication",
+      "description": "Research exploring the role of expert input in early-stage innovation and how it influences creative outcomes.",
+      "tags": ["Research", "Innovation", "Analytics"],
+      "iconName": "FileText",
+      "codeLink": null,
+      "detailsLink": null
+    }
+  ]
+}

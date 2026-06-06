@@ -24,15 +24,49 @@ Here is Darren's background:
 
 Keep your answers concise, engaging, and in the first person ("I am Darren..." or "I worked at..."). Do not hallucinate skills or experiences outside of this list.`;
 
-export async function POST(req) {
+// Simple in-memory rate limiting
+const rateLimitCache = new Map<string, { count: number; timestamp: number }>();
+const RATE_LIMIT = 10; // requests
+const TIME_WINDOW = 60 * 1000; // 1 minute
+
+export async function POST(req: Request) {
   try {
+    // 1. Rate Limiting
+    const ip = req.headers.get("x-forwarded-for") || "unknown_ip";
+    const now = Date.now();
+    const requestData = rateLimitCache.get(ip);
+    
+    if (requestData && (now - requestData.timestamp) < TIME_WINDOW) {
+      if (requestData.count >= RATE_LIMIT) {
+        return Response.json({ error: "Too many requests. Please try again later." }, { status: 429 });
+      }
+      requestData.count++;
+    } else {
+      rateLimitCache.set(ip, { count: 1, timestamp: now });
+    }
+
+    // 2. Input Validation
     const { messages } = await req.json();
+
+    if (!Array.isArray(messages) || messages.length > 20) {
+      return Response.json({ error: "Invalid payload: messages array is required and must not exceed 20 items." }, { status: 400 });
+    }
+
+    const validatedMessages = messages.map((msg: any) => {
+      if (msg.role !== "user" && msg.role !== "assistant") {
+        throw new Error("Invalid payload: Only 'user' or 'assistant' roles are permitted.");
+      }
+      if (typeof msg.content !== "string" || msg.content.trim().length === 0 || msg.content.length > 1000) {
+        throw new Error("Invalid payload: Content must be a non-empty string under 1000 characters.");
+      }
+      return { role: msg.role, content: msg.content.trim() };
+    });
 
     const completion = await openai.chat.completions.create({
       model: "gpt-4o-mini",
       messages: [
         { role: "system", content: SYSTEM_PROMPT },
-        ...messages
+        ...validatedMessages
       ],
       temperature: 0.7,
       max_tokens: 500,
@@ -40,15 +74,16 @@ export async function POST(req) {
 
     const reply = completion.choices[0]?.message?.content || "I am currently unavailable.";
 
-    return new Response(JSON.stringify({ reply }), {
-      status: 200,
-      headers: { "Content-Type": "application/json" },
-    });
-  } catch (error) {
-    console.error("Chat API Error:", error);
-    return new Response(JSON.stringify({ error: error.message || "Failed to fetch response" }), {
-      status: 500,
-      headers: { "Content-Type": "application/json" },
-    });
+    return Response.json({ reply }, { status: 200 });
+
+  } catch (error: any) {
+    console.error("Chat API Error:", error.message);
+    
+    if (error.message.startsWith("Invalid payload")) {
+      return Response.json({ error: error.message }, { status: 400 });
+    }
+
+    // 3. Error Masking
+    return Response.json({ error: "Something went wrong processing your request." }, { status: 500 });
   }
 }
