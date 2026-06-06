@@ -50,11 +50,23 @@ Once Vercel finishes building (usually under 2 minutes), it will provide you wit
 
 - `[ ]` **Verify the Live Site**: Visit your new `.vercel.app` domain. Test the mobile menu, portfolio links, and specifically send a message to your AI Twin to verify that the OpenAI API key was injected correctly.
 
-> [!NOTE]
-> ### Alternative: Manual Deployment via Vercel CLI
-> If you prefer to push code directly from your terminal *without* using GitHub, you can use the Vercel CLI:
-> 1. Run `npm i -g vercel` to install the CLI.
-> 2. Run `vercel` in your project root directory.
-> 3. Follow the interactive prompts to link your local directory to a new Vercel project.
-> 4. To push a final production build manually, run `vercel --prod`. 
-> *(Remember to add your environment variables in the Vercel dashboard afterwards!)*
+---
+## Alternative: Direct Deployment via Vercel CLI
+If you prefer to push code directly from your terminal *without* using GitHub, you can skip Phase 2 and 3 and use the Vercel CLI instead:
+- `[ ]` **Install the CLI**: Open your terminal and run `npm i -g vercel`.
+- `[ ]` **Log In**: Run `vercel login` and follow the prompts to authenticate your account in the browser.
+- `[ ]` **Initialize the Project**: Run `vercel` in your project root directory (`site/`). Follow the interactive prompts:
+  - Set up and deploy? -> `Y`
+  - Link to existing project? -> `N`
+  - Directory? -> `./`
+  *(This will create a Preview deployment without the API key.)*
+- `[ ]` **Add Environment Variables**: Since the AI chat needs the API key, add it securely via the CLI:
+  ```bash
+  vercel env add OPENAI_API_KEY production
+  ```
+  *(Paste your secret API key when prompted).*
+- `[ ]` **Deploy to Production**: Trigger a final production build to make your environment variable live:
+  ```bash
+  vercel --prod
+  ```
+- `[ ]` **Verify**: Vercel will output your final production `.vercel.app` URL. Visit it and test your AI Twin!
