@@ -32,8 +32,8 @@ To run this project locally, follow these steps:
 
 ### 1. Clone the repository
 ```bash
-git clone https://github.com/YOUR_USERNAME/YOUR_REPO_NAME.git
-cd YOUR_REPO_NAME
+git clone https://github.com/darrendariustan/personal-site.git
+cd personal-site
 ```
 
 ### 2. Install dependencies
@@ -62,7 +62,3 @@ The `/api/chat` route is designed for production environments and includes:
 - **Strict Payload Validation**: Checks that the message array is under 20 items and enforces tight limits on message string length and character count.
 - **Graceful Error Handling**: Wraps internal SDK/API errors to ensure backend details are never leaked to the client.
 
----
-
-## 📝 License
-This project is open-source and available under the [MIT License](LICENSE). Feel free to use it as inspiration for your own portfolio!
